@@ -19,7 +19,7 @@ describe 'Meal Endpoints' do
       meals = JSON.parse(response.body, symbolize_names: true)
       first_meal = meals.first
       second_meal = meals.last
-      
+
       expect(meals).to be_an(Array)
       expect(meals.length).to eq(2)
 
@@ -38,6 +38,40 @@ describe 'Meal Endpoints' do
       expect(second_meal[:foods].last[:id]).to eq(food_4.id)
       expect(second_meal[:foods].last[:name]).to eq(food_4.name)
       expect(second_meal[:foods].last[:calories]).to eq(food_4.calories)
+    end
+  end
+
+  context 'GET /api/v1/meals/:meal_id/foods' do
+    it 'returns the meal object and all foods associated with the meal' do
+      meal_1 = create(:meal)
+
+      food_1 = create(:food, meal_id: meal_1.id)
+      food_2 = create(:food_2, meal_id: meal_1.id)
+
+      get "/api/v1/meals/#{meal_1.id}/foods"
+
+      expect(response).to be_successful
+
+      meal = JSON.parse(response.body, symbolize_names: true)
+
+      expect(meal).to be_a(Hash)
+      expect(meal[:id]).to eq(meal_1.id)
+      expect(meal[:name]).to eq(meal_1.name)
+
+      foods = meal[:foods]
+      food = foods.first
+
+      expect(foods).to be_an(Array)
+      expect(food).to be_a(Hash)
+      expect(food[:id]).to eq(food_1.id)
+      expect(food[:name]).to eq(food_1.name)
+      expect(food[:calories]).to eq(food_1.calories)
+    end
+
+    it 'returns a 404 status code if the meal is not found' do
+      get "/api/v1/meals/1/foods"
+
+      expect(response.status).to eq(404)
     end
   end
 end
