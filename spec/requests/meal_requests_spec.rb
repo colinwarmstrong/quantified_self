@@ -76,7 +76,7 @@ describe 'Meal Endpoints' do
   end
 
   context 'POST /api/v1/meals/:meal_id/foods/:id' do
-    it 'adds the food with the specified id to the meal with the specified id' do
+    it 'adds the food with the specified id to the specified meal' do
       meal_1 = create(:meal)
       food_1 = create(:food)
 
@@ -93,6 +93,29 @@ describe 'Meal Endpoints' do
       meal_1 = create(:meal)
 
       post "/api/v1/meals/#{meal_1.id}/foods/1"
+
+      expect(response.status).to eq(404)
+    end
+  end
+
+  context 'DELETE /api/v1/meals/:meal_id/foods/:id' do
+    it 'removes the food with the specified id from the specified meal' do
+      meal_1 = create(:meal)
+      food_1 = create(:food, meal_id: meal_1.id)
+
+      delete "/api/v1/meals/#{meal_1.id}/foods/#{food_1.id}"
+
+      expect(response.status).to be_successful
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:message]).to eq("Successfully removed #{food_1.name} from #{meal_1.name}")
+    end
+
+    it 'returns a 404 status code if the meal or food cannot be found' do
+      meal_1 = create(:meal)
+
+      delete "/api/v1/meals/#{meal_1.id}/foods/1"
 
       expect(response.status).to eq(404)
     end
