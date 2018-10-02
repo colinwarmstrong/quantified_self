@@ -100,4 +100,24 @@ describe 'Food Endpoints' do
       expect(response.status).to eq(400)
     end
   end
+
+  context 'DELETE /api/v1/foods/:id' do
+    it 'will delete the specified food and return a 204 status code' do
+      food_1 = create(:food)
+
+      expect(Food.count).to eq(1)
+
+      delete "/api/v1/foods/#{food_1.id}"
+
+      expect(response.status).to eq(204)
+
+      expect(Food.count).to eq(0)
+    end
+
+    it "will return a 404 if the food can't be found" do
+      delete '/api/v1/foods/1'
+
+      expect(response.status).to eq(404)
+    end
+  end
 end
