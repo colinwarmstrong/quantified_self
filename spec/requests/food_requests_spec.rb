@@ -60,5 +60,14 @@ describe 'Food Endpoints' do
       expect(food[:name]).to eq(name)
       expect(food[:calories]).to eq(calories.to_i)
     end
+
+    it 'returns a 400 status code if the food is not successfully created' do
+      name = 'hamburger'
+      calories = ''
+
+      post "/api/v1/foods", params: {"food": { "name": name, "calories": calories}}
+
+      expect(response.status).to eq(400)
+    end
   end
 end
