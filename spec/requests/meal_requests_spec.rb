@@ -88,5 +88,13 @@ describe 'Meal Endpoints' do
 
       expect(json[:message]).to eq("Successfully added #{food_1.name} to #{meal_1.name}")
     end
+
+    it 'returns a 404 status code if the meal or food cannot be found' do
+      meal_1 = create(:meal)
+
+      post "/api/v1/meals/#{meal_1.id}/foods/1"
+
+      expect(response.status).to eq(404)
+    end
   end
 end
