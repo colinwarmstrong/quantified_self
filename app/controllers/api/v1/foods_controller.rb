@@ -14,8 +14,17 @@ class Api::V1::FoodsController < ApplicationController
   end
 
   def create
-    food = Food.new(name: food_params[:name], calories: food_params[:calories])
+    food = Food.new(food_attributes)
     if food.save
+      render json: food
+    else
+      render status: 400
+    end
+  end
+
+  def update
+    food = Food.find_by_id(params[:id])
+    if food.update(food_attributes)
       render json: food
     else
       render status: 400
@@ -30,5 +39,9 @@ class Api::V1::FoodsController < ApplicationController
     else
       params.permit(:id)
     end
+  end
+
+  def food_attributes
+    {name: food_params[:name], calories: food_params[:calories]}
   end
 end

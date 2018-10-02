@@ -65,7 +65,37 @@ describe 'Food Endpoints' do
       name = 'hamburger'
       calories = ''
 
-      post "/api/v1/foods", params: {"food": { "name": name, "calories": calories}}
+      post '/api/v1/foods', params: {'food': { 'name': name, 'calories': calories}}
+
+      expect(response.status).to eq(400)
+    end
+  end
+
+  context 'POST /api/v1/foods/:id' do
+    it 'allows a user to update an existing food' do
+      food_1 = create(:food)
+
+      updated_name = 'candy bar'
+      updated_calories = '250'
+
+      patch "/api/v1/foods/#{food_1.id}", params: {'food': {'name': updated_name, 'calories': updated_calories}}
+
+      expect(response).to be_successful
+
+      food = JSON.parse(response.body, symbolize_names: true)
+
+      expect(food[:id]).to eq(food_1.id)
+      expect(food[:name]).to eq(updated_name)
+      expect(food[:calories]).to eq(updated_calories.to_i)
+    end
+
+    it 'returns a 400 if the food is not successfully updated' do
+      food_1 = create(:food)
+
+      updated_name = ''
+      updated_calories = '250'
+
+      patch "/api/v1/foods/#{food_1.id}", params: {'food': {'name': updated_name, 'calories': updated_calories}}
 
       expect(response.status).to eq(400)
     end
