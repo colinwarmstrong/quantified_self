@@ -15,8 +15,6 @@ describe 'Food Endpoints' do
 
       expect(foods).to be_an(Array)
       expect(foods.length).to eq(2)
-
-      binding.pry
       
       expect(food[:id]).to eq(food_1.id)
       expect(food[:name]).to eq(food_1.name)
