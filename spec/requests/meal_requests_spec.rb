@@ -6,11 +6,14 @@ describe 'Meal Endpoints' do
       meal_1 = create(:meal)
       meal_2 = create(:meal_2)
 
-      food_1 = create(:food, meal_id: meal_1.id)
-      food_2 = create(:food_2, meal_id: meal_1.id)
+      food_1 = create(:food)
+      food_2 = create(:food_2)
 
-      food_3 = create(:food, meal_id: meal_2.id)
-      food_4 = create(:food_2, meal_id: meal_2.id)
+      meal_food_1 = create(:meal_food, meal_id: meal_1.id, food_id: food_1.id)
+      meal_food_2 = create(:meal_food, meal_id: meal_1.id, food_id: food_2.id)
+
+      meal_food_3 = create(:meal_food, meal_id: meal_2.id, food_id: food_1.id)
+      meal_food_4 = create(:meal_food, meal_id: meal_2.id, food_id: food_2.id)
 
       get '/api/v1/meals'
 
@@ -35,9 +38,9 @@ describe 'Meal Endpoints' do
       expect(second_meal[:id]).to eq(meal_2.id)
       expect(second_meal[:name]).to eq(meal_2.name)
       expect(second_meal[:foods]).to be_an(Array)
-      expect(second_meal[:foods].last[:id]).to eq(food_4.id)
-      expect(second_meal[:foods].last[:name]).to eq(food_4.name)
-      expect(second_meal[:foods].last[:calories]).to eq(food_4.calories)
+      expect(second_meal[:foods].last[:id]).to eq(food_2.id)
+      expect(second_meal[:foods].last[:name]).to eq(food_2.name)
+      expect(second_meal[:foods].last[:calories]).to eq(food_2.calories)
     end
   end
 
@@ -45,8 +48,11 @@ describe 'Meal Endpoints' do
     it 'returns the meal object and all foods associated with the meal' do
       meal_1 = create(:meal)
 
-      food_1 = create(:food, meal_id: meal_1.id)
-      food_2 = create(:food_2, meal_id: meal_1.id)
+      food_1 = create(:food)
+      food_2 = create(:food_2)
+
+      meal_food_1 = create(:meal_food, meal_id: meal_1.id, food_id: food_1.id)
+      meal_food_2 = create(:meal_food, meal_id: meal_1.id, food_id: food_2.id)
 
       get "/api/v1/meals/#{meal_1.id}/foods"
 
@@ -79,6 +85,7 @@ describe 'Meal Endpoints' do
     it 'adds the food with the specified id to the specified meal' do
       meal_1 = create(:meal)
       food_1 = create(:food)
+      meal_food_1 = create(:meal_food, meal_id: meal_1.id, food_id: food_1.id)
 
       post "/api/v1/meals/#{meal_1.id}/foods/#{food_1.id}"
 
@@ -101,11 +108,12 @@ describe 'Meal Endpoints' do
   context 'DELETE /api/v1/meals/:meal_id/foods/:id' do
     it 'removes the food with the specified id from the specified meal' do
       meal_1 = create(:meal)
-      food_1 = create(:food, meal_id: meal_1.id)
+      food_1 = create(:food)
+      meal_food_1 = create(:meal_food, meal_id: meal_1.id, food_id: food_1.id)
 
       delete "/api/v1/meals/#{meal_1.id}/foods/#{food_1.id}"
 
-      expect(response.status).to be_successful
+      expect(response).to be_successful
 
       json = JSON.parse(response.body, symbolize_names: true)
 
