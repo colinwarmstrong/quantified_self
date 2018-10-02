@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Food Endpoints' do
   context 'GET /api/v1/foods' do
     it 'returns all foods currently in the database' do
+      meal = create(:meal)
       food_1 = create(:food)
       food_2 = create(:food_2)
 
@@ -24,6 +25,7 @@ describe 'Food Endpoints' do
 
   context 'GET /api/v1/foods/:id' do
     it 'returns the food object with the specific :id the user passes in' do
+      meal = create(:meal)
       food_1 = create(:food)
 
       get "/api/v1/foods/#{food_1.id}"
@@ -71,8 +73,9 @@ describe 'Food Endpoints' do
     end
   end
 
-  context 'POST /api/v1/foods/:id' do
+  context 'PATCH /api/v1/foods/:id' do
     it 'allows a user to update an existing food' do
+      meal = create(:meal)
       food_1 = create(:food)
 
       updated_name = 'candy bar'
@@ -90,6 +93,7 @@ describe 'Food Endpoints' do
     end
 
     it 'returns a 400 status code if the food is not successfully updated' do
+      meal = create(:meal)
       food_1 = create(:food)
 
       updated_name = ''
@@ -103,6 +107,7 @@ describe 'Food Endpoints' do
 
   context 'DELETE /api/v1/foods/:id' do
     it 'allows a user to delete the specified food and returns a 204 status code' do
+      meal = create(:meal)
       food_1 = create(:food)
 
       expect(Food.count).to eq(1)
