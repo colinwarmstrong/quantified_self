@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Food Endpoints' do
   context 'GET /api/v1/foods' do
-    it 'returns all the foods currently in the database' do
+    it 'returns all the foods in the database' do
       meal = create(:meal)
       food_1 = create(:food)
       food_2 = create(:food_2)

@@ -42,7 +42,7 @@ describe 'Meal Endpoints' do
   end
 
   context 'GET /api/v1/meals/:meal_id/foods' do
-    it 'returns all the foods associated with the specified meal' do
+    it 'returns the meal object and all foods associated with the meal' do
       meal_1 = create(:meal)
 
       food_1 = create(:food, meal_id: meal_1.id)
@@ -66,6 +66,12 @@ describe 'Meal Endpoints' do
       expect(food[:id]).to eq(food_1.id)
       expect(food[:name]).to eq(food_1.name)
       expect(food[:calories]).to eq(food_1.calories)
+    end
+
+    it 'returns a 404 status code if the meal is not found' do
+      get "/api/v1/meals/1/foods"
+
+      expect(response.status).to eq(404)
     end
   end
 end
