@@ -74,4 +74,19 @@ describe 'Meal Endpoints' do
       expect(response.status).to eq(404)
     end
   end
+
+  context 'POST /api/v1/meals/:meal_id/foods/:id' do
+    it 'adds the food with the specified id to the meal with the specified id' do
+      meal_1 = create(:meal)
+      food_1 = create(:food)
+
+      post "/api/v1/meals/#{meal_1.id}/foods/#{food_1.id}"
+
+      expect(response.status).to eq(201)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:message]).to eq("Successfully added #{food_1.name} to #{meal_1.name}")
+    end
+  end
 end
