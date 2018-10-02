@@ -38,7 +38,7 @@ describe 'Food Endpoints' do
       expect(food[:calories]).to eq(food_1.calories)
     end
 
-    it 'returns a 404 if the food is not found' do
+    it 'returns a 404 status code if the food is not found' do
       get '/api/v1/foods/1'
 
       expect(response.status).to eq(404)
@@ -89,7 +89,7 @@ describe 'Food Endpoints' do
       expect(food[:calories]).to eq(updated_calories.to_i)
     end
 
-    it 'returns a 400 if the food is not successfully updated' do
+    it 'returns a 400 status code if the food is not successfully updated' do
       food_1 = create(:food)
 
       updated_name = ''
@@ -102,7 +102,7 @@ describe 'Food Endpoints' do
   end
 
   context 'DELETE /api/v1/foods/:id' do
-    it 'will delete the specified food and return a 204 status code' do
+    it 'allows a user to delete the specified food and returns a 204 status code' do
       food_1 = create(:food)
 
       expect(Food.count).to eq(1)
@@ -114,7 +114,7 @@ describe 'Food Endpoints' do
       expect(Food.count).to eq(0)
     end
 
-    it "will return a 404 if the food can't be found" do
+    it "returns a 404 status code if the food is not found" do
       delete '/api/v1/foods/1'
 
       expect(response.status).to eq(404)
