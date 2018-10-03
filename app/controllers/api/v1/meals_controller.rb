@@ -26,8 +26,7 @@ class Api::V1::MealsController < ApplicationController
   def destroy
     meal = Meal.find_by_id(params[:meal_id])
     food = Food.find_by_id(params[:id])
-    if !meal.nil? && !food.nil?
-      meal.meal_foods.find_by_food_id(food.id).destroy
+    if !meal.nil? && !food.nil? && meal.meal_foods.find_by_food_id(food.id).destroy
       render json: {message: "Successfully removed #{food.name} from #{meal.name}"}
     else
       render status: 404
