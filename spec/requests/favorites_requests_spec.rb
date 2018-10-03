@@ -63,12 +63,12 @@ describe 'Favorites Endpoints' do
       expect(favorite_foods_1).to be_a(Array)
       expect(favorite_foods_1.length).to eq(2)
 
-      expect(favorite_foods_1.first[:name]).to eq(food_1.name || food_2.name)
-      expect(favorite_foods_1.first[:calories]).to eq(food_1.calories || food_2.calories)
+      expect(favorite_foods_1.first[:name]).to eq(food_1.name).or eq(food_2.name)
+      expect(favorite_foods_1.first[:calories]).to eq(food_1.calories).or eq(food_2.calories)
       expect(favorite_foods_1.first[:mealsWhenEaten]).to eq([meal_1.name, meal_3.name])
 
-      expect(favorite_foods_1.last[:name]).to eq(food_1.name || food_2.name)
-      expect(favorite_foods_1.last[:calories]).to eq(food_1.calories || food_2.calories)
+      expect(favorite_foods_1.last[:name]).to eq(food_1.name).or eq(food_2.name)
+      expect(favorite_foods_1.last[:calories]).to eq(food_1.calories).or eq(food_2.calories)
       expect(favorite_foods_1.last[:mealsWhenEaten]).to eq([meal_3.name, meal_2.name])
 
       expect(favorite_2[:timesEaten]).to eq(4)
