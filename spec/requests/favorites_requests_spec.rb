@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Favorites Endpoints' do
   context 'GET /api/v1/favorite_foods' do
-    it 'returns data on the foods that were eaten the most frequently' do
+    it 'returns data on foods eaten the most frequently' do
       meal_1 = Meal.create(name: 'breakfast')
       meal_2 = Meal.create(name: 'lunch')
       meal_3 = Meal.create(name: 'dinner')
@@ -46,8 +46,6 @@ describe 'Favorites Endpoints' do
 
       favorites = JSON.parse(response.body, symbolize_names: true)
 
-      binding.pry
-      
       favorite_1 = favorites[0]
       favorite_foods_1 = favorite_1[:foods]
 
