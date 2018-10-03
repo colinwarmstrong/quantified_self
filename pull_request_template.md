@@ -1,6 +1,6 @@
-____ Wrote Tests
-____ Implemented 
-____ Reviewed
+- [] Wrote Tests
+- [] Implemented 
+- [] Reviewed
 # Neccesary checkmarks:
 - [] All Tests are Passing
 
@@ -12,7 +12,7 @@ ____ Reviewed
 
 # Implements/Fixes:
 * description
-closes #
+* Closes #
 
 # Check the correct boxes
 
