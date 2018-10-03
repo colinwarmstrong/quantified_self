@@ -65,7 +65,7 @@ describe 'Favorites Endpoints' do
 
       expect(favorite_foods_1.first[:name]).to eq(food_1.name).or eq(food_2.name)
       expect(favorite_foods_1.first[:calories]).to eq(food_1.calories).or eq(food_2.calories)
-      expect(favorite_foods_1.first[:mealsWhenEaten]).to include(meal_1.name)
+      expect(favorite_foods_1.first[:mealsWhenEaten]).to include(meal_3.name)
 
       expect(favorite_foods_1.last[:name]).to eq(food_1.name).or eq(food_2.name)
       expect(favorite_foods_1.last[:calories]).to eq(food_1.calories).or eq(food_2.calories)
