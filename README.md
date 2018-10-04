@@ -50,7 +50,7 @@ Once the server is up and running, visit [http://localhost:3000/api/v1/foods](ht
 
 ## Running the tests
 
-The test suite is built using RSpec.  To run the test suite after you have set up the repository locally, run `rspec` from the command line.
+The test suite is built using RSpec.  To run the test suite after you have set up the repository locally, run `bundle exec rspec` from the command line.
 
 ## Endpoints
 
