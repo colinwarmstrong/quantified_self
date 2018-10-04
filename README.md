@@ -52,9 +52,39 @@ Once the server is up and running, visit [http://localhost:3000/api/v1/foods](ht
 
 The test suite is built using RSpec.  To run the test suite after you have set up the repository locally, run `rspec` from the command line.
 
+## Endpoints
+
+All endpoints can be accessed by appending them to the root URL `https://quantifiedself1.herokuapp.com`
+
+##### Food Endpoints
+- GET [/api/v1/foods](https://quantifiedself1.herokuapp.com/api/v1/foods)
+	- Returns information about all foods currently in the database.
+- GET [/api/v1/foods/:id](https://quantifiedself1.herokuapp.com/api/v1/foods/1)
+	- Returns information about a specific food.
+- POST /api/v1/foods
+	- Allows creating a new food with paramaters in this form: `{ "food": { "name": "Name of food here", "calories": "Calories here"} }`
+- PATCH /api/v1/foods/:id
+	- Allows one to update an existing food with parameters in this form: `{ "food": { "name": "Mint", "calories": "14"} }`
+- DELETE /api/v1/foods/:id
+	- Deletes the specified food.
+
+##### Meal Endpoints
+- GET [/api/v1/meals](https://quantifiedself1.herokuapp.com/api/v1/meals)
+	- Returns all meals currently in the database.
+- GET [/api/v1/meals/:meal_id/foods](https://quantifiedself1.herokuapp.com/api/v1/meals/1/foods)
+	- Returns information about a specific meal and the foods eaten at that meal.
+- POST /api/v1/meals/:meal_id/foods/:id
+	- Adds the food with the specified id to the specified meal.
+- DELETE /api/v1/meals/:meal_id/foods/:id
+	- Removes the food with the specified id to the specified meal.
+
+##### Favorites Endpoints
+- GET [/api/v1/favorite_foods](https://quantifiedself1.herokuapp.com/api/v1/favorite_foods)
+	- Returns information about foods that are eaten most frequently. 
+
 ## Deployment
 
-Quantified Self is deployed through [Heroku](https://www.heroku.com/).
+Quantified Self is deployed through [Heroku](https://www.heroku.com/) and hosted at https://quantifiedself1.herokuapp.com/.
 
 ## Built With
 
@@ -72,3 +102,4 @@ Quantified Self is deployed through [Heroku](https://www.heroku.com/).
 ## Contributing
 
 If you would like to contribute, you can email the author at colinwarmstrong@gmail.com.
+
