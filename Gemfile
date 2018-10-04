@@ -9,6 +9,8 @@ gem 'rails', '~> 5.1.6'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'coveralls', require: false
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
