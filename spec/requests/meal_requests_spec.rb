@@ -96,10 +96,18 @@ describe 'Meal Endpoints' do
       expect(json[:message]).to eq("Successfully added #{food_1.name} to #{meal_1.name}")
     end
 
-    it 'returns a 404 status code if the meal or food cannot be found' do
+    it 'returns a 404 status code if the food cannot be found' do
       meal_1 = create(:meal)
 
       post "/api/v1/meals/#{meal_1.id}/foods/1"
+
+      expect(response.status).to eq(404)
+    end
+
+    it 'returns a 404 status code if the meal cannot be found' do
+      food_1 = create(:food)
+
+      post "/api/v1/meals/1/foods/#{food_1.id}"
 
       expect(response.status).to eq(404)
     end
@@ -120,10 +128,18 @@ describe 'Meal Endpoints' do
       expect(json[:message]).to eq("Successfully removed #{food_1.name} from #{meal_1.name}")
     end
 
-    it 'returns a 404 status code if the meal or food cannot be found' do
+    it 'returns a 404 status code if the food cannot be found' do
       meal_1 = create(:meal)
 
       delete "/api/v1/meals/#{meal_1.id}/foods/1"
+
+      expect(response.status).to eq(404)
+    end
+
+    it 'returns a 404 status code if the meal cannot be found' do
+      food_1 = create(:food)
+
+      delete "/api/v1/meals/1/foods/#{food_1.id}"
 
       expect(response.status).to eq(404)
     end

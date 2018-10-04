@@ -12,7 +12,7 @@ class FavoritesPresenter
   end
 
   def sorted_foods
-    grouped_foods.sort_by { |count, _| -count }
+    grouped_foods.sort_by { |count, food| -count }
   end
 
   def grouped_foods
