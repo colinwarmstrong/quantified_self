@@ -48,7 +48,7 @@ describe 'Food Endpoints' do
   end
 
   context 'POST /api/v1/foods' do
-    it 'allows a user to create a new food with the correct parameters' do
+    it 'creates a new food when given valid parameters' do
       name = 'hamburger'
       calories = '550'
 
@@ -74,7 +74,7 @@ describe 'Food Endpoints' do
   end
 
   context 'PATCH /api/v1/foods/:id' do
-    it 'allows a user to update an existing food' do
+    it 'updates an existing food when given valid parameters' do
       meal = create(:meal)
       food_1 = create(:food)
 
@@ -106,7 +106,7 @@ describe 'Food Endpoints' do
   end
 
   context 'DELETE /api/v1/foods/:id' do
-    it 'allows a user to delete the specified food and returns a 204 status code' do
+    it 'deletes the specified food and returns a 204 status code' do
       meal = create(:meal)
       food_1 = create(:food)
 
