@@ -40,6 +40,7 @@ class Api::V1::FoodsController < ApplicationController
   private
 
   def food_params
+    binding.pry
     if params[:food]
       params.require(:food).permit(:name, :calories)
     else
