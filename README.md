@@ -2,7 +2,7 @@
 
 Quantified Self is an API built to serve as the backend for an application designed to track daily food intake. It is built using Rails and a Postgres database.  The project was built as part of the curriculum for the backend program at Turing School of Software and Design. The project spec can be found [here](http://backend.turing.io/module4/projects/quantified_self/quantified_self_rails).  
 
-[![Build Status](https://travis-ci.com/colinwarmstrong/quantified_self.svg?branch=master)](https://travis-ci.com/colinwarmstrong/quantified_self) ![Github file size](https://img.shields.io/github/size/webcaetano/craft/build/phaser-craft.min.js.svg?style=popout) ![Codecov](https://img.shields.io/codecov/c/github/codecov/example-python.svg?style=popout)
+[![Build Status](https://travis-ci.com/colinwarmstrong/quantified_self.svg?branch=master)](https://travis-ci.com/colinwarmstrong/quantified_self) [![Coverage Status](https://coveralls.io/repos/github/colinwarmstrong/quantified_self/badge.svg?branch=master)](https://coveralls.io/github/colinwarmstrong/quantified_self?branch=master)
 
 
 
