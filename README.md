@@ -6,7 +6,7 @@ Quantified Self is an API built to serve as the backend for an application desig
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
