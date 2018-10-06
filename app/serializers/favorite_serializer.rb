@@ -7,7 +7,13 @@ class FavoriteSerializer < ActiveModel::Serializer
 
   def foods
     object.foods.map do |food|
-      {name: food.name, calories: food.calories, mealsWhenEaten: food.meals.distinct.pluck(:name)}
+      {name: food.name, calories: food.calories, mealsWhenEaten: meal_names(food.meals)}
     end
+  end
+
+  def meal_names(meals)
+    meals.map do |meal|
+      meal.name
+    end.uniq
   end
 end

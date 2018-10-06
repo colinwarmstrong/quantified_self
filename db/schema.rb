@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181002034012) do
+ActiveRecord::Schema.define(version: 20181006212722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20181002034012) do
     t.string "name"
     t.integer "calories"
     t.bigint "meal_food_id"
+    t.integer "times_eaten", default: 0
     t.index ["meal_food_id"], name: "index_foods_on_meal_food_id"
   end
 

@@ -5,6 +5,5 @@ class Favorite < ActiveModelSerializers::Model
   def initialize(count, foods)
     @count = count
     @foods = foods
-    @meals = 1
   end
 end
