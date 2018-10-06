@@ -42,10 +42,14 @@ class Api::V1::MealsController < ApplicationController
   end
 
   def successful_create?
-    !meal.nil? && !food.nil? && meal.meal_foods.create(meal_id: meal.id, food_id: food.id)
+    valid_meal_and_food? && meal.meal_foods.create(meal_id: meal.id, food_id: food.id)
   end
 
   def successful_destroy?
-    !meal.nil? && !food.nil? && meal.meal_foods.find_by_food_id(food.id).destroy
+    valid_meal_and_food? && meal.meal_foods.find_by_food_id(food.id).destroy
+  end
+
+  def valid_meal_and_food?
+    !meal.nil? && !food.nil?
   end
 end

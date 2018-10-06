@@ -20,10 +20,12 @@ class FavoritesPresenter
   end
 
   def times_eaten_per_food
-    Food.select('foods.*, COUNT(meal_foods.food_id) AS times_eaten')
+    x = Food.select('foods.*, COUNT(meal_foods.food_id) AS times_eaten')
       .joins(:meals)
-      .group('foods.id, meal_foods.food_id')
+      .eager_load(:meals)
+      .group('meals.id, foods.id, meal_foods.food_id')
       .having('COUNT(meal_foods.food_id) > 1')
       .order('times_eaten DESC')
+      binding.pry
   end
 end
