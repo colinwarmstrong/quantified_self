@@ -1,6 +1,6 @@
 class Api::V1::MealsController < ApplicationController
   def index
-    render json: Meal.all
+    render json: Meal.includes(:foods).all
   end
 
   def show
