@@ -12,7 +12,7 @@ class FavoritesPresenter
   end
 
   def sorted_foods
-    grouped_foods.sort_by { |count, food| -count }
+    grouped_foods.sort_by { |times_eaten, food| -times_eaten }
   end
 
   def grouped_foods
@@ -20,10 +20,6 @@ class FavoritesPresenter
   end
 
   def times_eaten_per_food
-    Food.select('foods.*, COUNT(meal_foods.food_id) AS times_eaten')
-      .joins(:meals)
-      .group('foods.id, meal_foods.food_id')
-      .having('COUNT(meal_foods.food_id) > 1')
-      .order('times_eaten DESC')
+    Food.includes(:meals).where('foods.times_eaten > 1')
   end
 end

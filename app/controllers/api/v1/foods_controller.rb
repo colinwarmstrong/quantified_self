@@ -20,8 +20,7 @@ class Api::V1::FoodsController < ApplicationController
   end
 
   def update
-    food = Food.find_by_id(params[:id])
-    if food.update(food_attributes)
+    if food.update(food_update_attributes)
       render json: food
     else
       render status: 400
@@ -40,7 +39,9 @@ class Api::V1::FoodsController < ApplicationController
   private
 
   def food_params
-    if params[:food]
+    if params[:food] && params[:id]
+      params.permit(:id, food: [:name, :calories])
+    elsif params[:food]
       params.require(:food).permit(:name, :calories)
     else
       params.permit(:id)
@@ -49,6 +50,10 @@ class Api::V1::FoodsController < ApplicationController
 
   def food_attributes
     {name: food_params[:name], calories: food_params[:calories]}
+  end
+
+  def food_update_attributes
+    {name: food_params[:food][:name], calories: food_params[:food][:calories]}
   end
 
   def food
