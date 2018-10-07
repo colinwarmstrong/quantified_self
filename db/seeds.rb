@@ -48,7 +48,6 @@ MealFood.create(meal_id: meal_4.id, food_id: food_11.id)
 MealFood.create(meal_id: meal_4.id, food_id: food_12.id)
 MealFood.create(meal_id: meal_4.id, food_id: food_12.id)
 
-
 puts "Created #{Meal.count} meals."
 puts "Created #{Food.count} foods."
 puts "Created #{MealFood.count} meal foods."
