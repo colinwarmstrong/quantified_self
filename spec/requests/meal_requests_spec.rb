@@ -85,9 +85,12 @@ describe 'Meal Endpoints' do
     it 'adds the food with the specified id to the specified meal' do
       meal_1 = create(:meal)
       food_1 = create(:food)
-      meal_food_1 = create(:meal_food, meal_id: meal_1.id, food_id: food_1.id)
+
+      expect(meal_1.foods.count).to eq(0)
 
       post "/api/v1/meals/#{meal_1.id}/foods/#{food_1.id}"
+
+      expect(meal_1.foods.count).to eq(1)
 
       expect(response.status).to eq(201)
 
@@ -119,7 +122,11 @@ describe 'Meal Endpoints' do
       food_1 = create(:food)
       meal_food_1 = create(:meal_food, meal_id: meal_1.id, food_id: food_1.id)
 
+      expect(meal_1.foods.count).to eq(1)
+
       delete "/api/v1/meals/#{meal_1.id}/foods/#{food_1.id}"
+
+      expect(meal_1.foods.count).to eq(0)
 
       expect(response).to be_successful
 
