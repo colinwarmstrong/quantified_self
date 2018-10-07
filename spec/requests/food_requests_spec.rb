@@ -50,7 +50,11 @@ describe 'Food Endpoints' do
       name = 'hamburger'
       calories = '550'
 
+      expect(Food.count).to eq(0)
+
       post "/api/v1/foods", params: {"food": { "name": name, "calories": calories}}
+
+      expect(Food.count).to eq(1)
 
       expect(response).to be_successful
 
