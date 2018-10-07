@@ -192,9 +192,6 @@ All endpoints can be accessed by appending them to the root URL `https://quantif
             {
               "name": "Banana",
               "calories": 200,
-              // since Bananas were eaten 4 times but only two meals
-              // are in this array, this would mean that Banana was eaten
-              // more than once in at least each meal
               "mealsWhenEaten": ["Breakfast", "Dinner"]
             },
       },
@@ -209,9 +206,6 @@ All endpoints can be accessed by appending them to the root URL `https://quantif
           {
             "name": "Almonds"
             "calories": 800,
-            // Since almonds were eaten three times but snacks is the
-            // only meal in this array, this would mean that almonds were
-            // only eaten as snacks, but three times.
             "mealsWhenEaten": ["Snacks"]
           }
         ]
