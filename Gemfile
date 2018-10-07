@@ -13,7 +13,6 @@ gem 'coveralls', require: false
 gem 'figaro'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'pry'
@@ -28,7 +27,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'simplecov', require: false
-  gem 'codecov', :require => false
+  gem 'codecov', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
