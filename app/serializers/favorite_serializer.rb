@@ -11,9 +11,9 @@ class FavoriteSerializer < ActiveModel::Serializer
     end
   end
 
+  private
+
   def meal_names(meals)
-    meals.map do |meal|
-      meal.name
-    end.uniq
+    meals.map { |meal| meal.name }.uniq
   end
 end

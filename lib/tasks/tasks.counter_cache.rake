@@ -1,4 +1,4 @@
-desc 'Counter cache for project has many tasks'
+desc 'Counter cache for times eaten'
 
 task task_counter: :environment do
   Food.reset_column_information
