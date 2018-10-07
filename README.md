@@ -59,29 +59,165 @@ All endpoints can be accessed by appending them to the root URL `https://quantif
 
 ##### Food Endpoints
 - GET [/api/v1/foods](https://quantifiedself1.herokuapp.com/api/v1/foods)
-	- Returns information about all foods currently in the database.
+	- Returns information about all foods currently in the database. Each food will be returned in the following format:
+	```
+    {
+    "id": 1,
+    "name": "Banana",
+    "calories": 150
+	},
+    ```
+    
 - GET [/api/v1/foods/:id](https://quantifiedself1.herokuapp.com/api/v1/foods/1)
 	- Returns information about a specific food.
+	```
+	{
+    "id": 1,
+    "name": "Banana",
+    "calories": 150
+	}
+    ```
+
 - POST /api/v1/foods
-	- Allows creating a new food with paramaters in this form: `{ "food": { "name": "Name of food here", "calories": "Calories here"} }`
+	- Allows creating a new food with paramaters in this form: 
+	```
+    { "food": { "name": "Name of food here", "calories": "Calories here"} }
+    ```
 - PATCH /api/v1/foods/:id
-	- Allows one to update an existing food with parameters in this form: `{ "food": { "name": "Mint", "calories": "14"} }`
+	- Allows one to update an existing food with parameters in this form: 
+	```
+    { "food": { "name": "Mint", "calories": "14"} }
+    ```
 - DELETE /api/v1/foods/:id
 	- Deletes the specified food.
 
 ##### Meal Endpoints
 - GET [/api/v1/meals](https://quantifiedself1.herokuapp.com/api/v1/meals)
-	- Returns all meals currently in the database.
+	- Returns information about all meals currently in the database.
+	```
+    [
+      {
+          "id": 1,
+          "name": "Breakfast",
+          "foods": [
+              {
+                  "id": 1,
+                  "name": "Banana",
+                  "calories": 150
+              },
+              {
+                  "id": 6,
+                  "name": "Yogurt",
+                  "calories": 550
+              },
+              {
+                  "id": 12,
+                  "name": "Apple",
+                  "calories": 220
+              }
+          ]
+      },
+      {
+          "id": 2,
+          "name": "Snack",
+          "foods": [
+              {
+                  "id": 1,
+                  "name": "Banana",
+                  "calories": 150
+              },
+              {
+                  "id": 9,
+                  "name": "Gum",
+                  "calories": 50
+              },
+              {
+                  "id": 10,
+                  "name": "Cheese",
+                  "calories": 400
+              }
+          ]
+       }
+  ]
+    ```
 - GET [/api/v1/meals/:meal_id/foods](https://quantifiedself1.herokuapp.com/api/v1/meals/1/foods)
 	- Returns information about a specific meal and the foods eaten at that meal.
+	```
+    {
+    "id": 1,
+    "name": "Breakfast",
+    "foods": [
+        {
+            "id": 1,
+            "name": "Banana",
+            "calories": 150
+        },
+        {
+            "id": 6,
+            "name": "Yogurt",
+            "calories": 550
+        },
+        {
+            "id": 12,
+            "name": "Apple",
+            "calories": 220
+        }
+      ]
+    }
+    ```
 - POST /api/v1/meals/:meal_id/foods/:id
-	- Adds the food with the specified id to the specified meal.
+	- Adds the food with the specified id to the specified meal. If successful, returns:
+	```
+    {
+    	"message": "Successfully added {FOODNAME} to {MEALNAME}"
+	}
+    ```
 - DELETE /api/v1/meals/:meal_id/foods/:id
-	- Removes the food with the specified id to the specified meal.
+	- Removes the food with the specified id to the specified meal. If successful, returns:
+	```
+    {
+    	"message": "Successfully removed {FOODNAME} from {MEALNAME}"
+	}
+    ```
 
 ##### Favorites Endpoints
 - GET [/api/v1/favorite_foods](https://quantifiedself1.herokuapp.com/api/v1/favorite_foods)
-	- Returns information about foods that are eaten most frequently.
+	- Returns information about foods that are eaten most frequently in the following format:
+	```
+	[
+      {
+        "timesEaten": 4,
+        "foods":
+          [
+            {
+              "name": "Banana",
+              "calories": 200,
+              // since Bananas were eaten 4 times but only two meals
+              // are in this array, this would mean that Banana was eaten
+              // more than once in at least each meal
+              "mealsWhenEaten": ["Breakfast", "Dinner"]
+            },
+      },
+      "timesEaten": 3,
+      "foods":
+        [
+          {
+            "name": "Strawberries",
+            "calories": 200,
+            "mealsWhenEaten": ["Breakfast", "Lunch", "Dinner"]
+          },
+          {
+            "name": "Almonds"
+            "calories": 800,
+            // Since almonds were eaten three times but snacks is the
+            // only meal in this array, this would mean that almonds were
+            // only eaten as snacks, but three times.
+            "mealsWhenEaten": ["Snacks"]
+          }
+        ]
+      }
+  ]
+	```
 
 ## Deployment
 
