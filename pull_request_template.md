@@ -1,5 +1,5 @@
 - [] Wrote Tests
-- [] Implemented 
+- [] Implemented
 - [] Reviewed
 # Neccesary checkmarks:
 - [] All Tests are Passing
@@ -7,8 +7,9 @@
 - [] The code will run locally
 
 ## Type of change
-- [] New feature 
+- [] New feature
 - [] Bug Fix
+- [] Refactor
 
 # Implements/Fixes:
 * description

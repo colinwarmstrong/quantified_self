@@ -16,10 +16,10 @@ class FavoritesPresenter
   end
 
   def grouped_foods
-    times_eaten_per_food.group_by { |food| food.times_eaten }
+    foods_eaten_more_than_once.group_by { |food| food.times_eaten }
   end
 
-  def times_eaten_per_food
+  def foods_eaten_more_than_once
     Food.includes(:meals).where('foods.times_eaten > 1')
   end
 end
