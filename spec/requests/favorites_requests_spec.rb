@@ -14,6 +14,10 @@ describe 'Favorites Endpoints' do
       food_5 = Food.create(name: 'Taco', calories: 400)
       food_6 = Food.create(name: 'Ice Cream', calories: 500)
 
+      create(:meal_food, food_id: food_4.id, meal_id: meal_2.id)
+      create(:meal_food, food_id: food_4.id, meal_id: meal_2.id)
+      create(:meal_food, food_id: food_4.id, meal_id: meal_2.id)
+
       create(:meal_food, food_id: food_1.id, meal_id: meal_1.id)
       create(:meal_food, food_id: food_1.id, meal_id: meal_1.id)
       create(:meal_food, food_id: food_1.id, meal_id: meal_3.id)
@@ -30,10 +34,6 @@ describe 'Favorites Endpoints' do
       create(:meal_food, food_id: food_3.id, meal_id: meal_1.id)
       create(:meal_food, food_id: food_3.id, meal_id: meal_2.id)
       create(:meal_food, food_id: food_3.id, meal_id: meal_2.id)
-
-      create(:meal_food, food_id: food_4.id, meal_id: meal_2.id)
-      create(:meal_food, food_id: food_4.id, meal_id: meal_2.id)
-      create(:meal_food, food_id: food_4.id, meal_id: meal_2.id)
 
       create(:meal_food, food_id: food_5.id, meal_id: meal_2.id)
       create(:meal_food, food_id: food_5.id, meal_id: meal_2.id)

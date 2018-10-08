@@ -46,19 +46,19 @@ describe FavoritesPresenter, type: :model do
         expect(expected).to be_an(Array)
         expect(expected.length).to eq(3)
 
-        expect(expected[0].count).to eq(5)
+        expect(expected[0].times_eaten).to eq(5)
         expect(expected[0].foods.length).to eq(2)
         expect(expected[0].foods[0].name).to eq(food_1.name).or eq(food_2.name)
         expect(expected[0].foods[0].calories).to eq(food_1.calories).or eq(food_2.calories)
         expect(expected[0].foods[1].name).to eq(food_2.name).or eq(food_1.name)
         expect(expected[0].foods[1].calories).to eq(food_2.calories).or eq(food_1.calories)
 
-        expect(expected[1].count).to eq(4)
+        expect(expected[1].times_eaten).to eq(4)
         expect(expected[1].foods.length).to eq(1)
         expect(expected[1].foods[0].name).to eq(food_3.name)
         expect(expected[1].foods[0].calories).to eq(food_3.calories)
 
-        expect(expected[2].count).to eq(3)
+        expect(expected[2].times_eaten).to eq(3)
         expect(expected[2].foods.length).to eq(1)
         expect(expected[2].foods[0].name).to eq(food_4.name)
         expect(expected[2].foods[0].calories).to eq(food_4.calories)

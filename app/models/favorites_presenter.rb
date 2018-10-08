@@ -1,14 +1,14 @@
 class FavoritesPresenter
   def favorites
-    most_eaten_foods.map do |count, foods|
-      Favorite.new(count, foods)
+    most_eaten_foods.map do |times_eaten, foods|
+      Favorite.new(times_eaten, foods)
     end
   end
 
   private
 
-  def most_eaten_foods
-    sorted_foods.shift(3)
+  def most_eaten_foods(quantity = 3)
+    sorted_foods.shift(quantity)
   end
 
   def sorted_foods
@@ -16,10 +16,10 @@ class FavoritesPresenter
   end
 
   def grouped_foods
-    times_eaten_per_food.group_by { |food| food.times_eaten }
+    foods_eaten_more_than_once.group_by { |food| food.times_eaten }
   end
 
-  def times_eaten_per_food
+  def foods_eaten_more_than_once
     Food.includes(:meals).where('foods.times_eaten > 1')
   end
 end

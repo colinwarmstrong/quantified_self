@@ -15,12 +15,12 @@ describe Favorite, type: :model do
       food_1 = Food.create(name: 'Apple', calories: 200)
       food_2 = Food.create(name: 'Orange', calories: 250)
 
-      count = 5
+      times_eaten = 5
       foods = [food_1, food_2]
 
-      favorite = Favorite.new(count, foods)
+      favorite = Favorite.new(times_eaten, foods)
 
-      expect(favorite.count).to eq(count)
+      expect(favorite.times_eaten).to eq(times_eaten)
       expect(favorite.foods).to eq(foods)
     end
   end
