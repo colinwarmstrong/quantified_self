@@ -1,14 +1,14 @@
 class FavoritesPresenter
   def favorites
-    most_eaten_foods.map do |count, foods|
-      Favorite.new(count, foods)
+    most_eaten_foods.map do |times_eaten, foods|
+      Favorite.new(times_eaten, foods)
     end
   end
 
   private
 
-  def most_eaten_foods
-    sorted_foods.shift(3)
+  def most_eaten_foods(quantity = 3)
+    sorted_foods.shift(quantity)
   end
 
   def sorted_foods
